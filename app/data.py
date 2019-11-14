@@ -1,17 +1,22 @@
 import requests
 import json
 
-def ChainInfo():
+def chaininfo():
     url = "https://api.chain.info/v2/entity/list"
     res = requests.get(url)
     js = res.json
-    if not js['success']:
-        return '404'
-    return js
+    if js["code"]=="200":
+        if not js['success']:
+            return '404'   
+        else:
+            return js
+    else:
+        return 'error'
+    
 
 
 
-def Troytrade():
+def troytrade():
     URL = "https://rdtradeapi.jar.today/t/public/data/blockchainchart/activeaddresses"
     r=requests.post(url=URL)
     data=r.json()
