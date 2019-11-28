@@ -35,13 +35,14 @@ def select_report_detail(id):
 
 @app.route('/survey/data/<id>', methods=['GET'])
 def select_data_detail(id):
-    switch = {'1':chaininfo,'2':troytrade}
+    switch = {'1':chaininfo,'2':troytrade,'3':sncrating}
     try:
         js = switch[id]()
         response = ResponseObj(js, 200, u'请求成功')
     except BaseException as exc:
+        print(exc)
         response = ResponseObj(None, 500, u'服务器内部错误')
-    return app.response_class(response=json.dumps(response.__dict__, default=str), mimetype='app/json')
+    return app.response_class(response=json.dumps(response.__dict__, default=str), mimetype='application/json')
 
 @app.route('/about/contact', methods=['POST'])
 def submit_contact():
