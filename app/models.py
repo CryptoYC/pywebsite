@@ -33,6 +33,7 @@ class Report(db.Model):
             'report_time': self.report_time
         }
 
+
 @dataclass
 class Contact(db.Model):
     """
@@ -48,29 +49,30 @@ class Contact(db.Model):
     mail = db.Column(db.String(150))
     content = db.Column(db.Text)
 
+
 @dataclass
 class Project(db.Model):
     """
     Model for Project.
     """
     id: int
-    name:str
-    website:str
-    doc_addr:str
-    submitter:str
-    contact:str
-    github:str
-    mail:str
-    remark:str
-    attachment:str
+    name: str
+    website: str
+    doc_addr: str
+    submitter: str
+    contact: str
+    github: str
+    mail: str
+    remark: str
+    attachment: str
 
     id = db.Column(db.Integer, primary_key=True)
-    name= db.Column(db.String(50))
-    website= db.Column(db.String(150))
-    doc_addr= db.Column(db.String(150))
-    submitter= db.Column(db.String(50))
-    contact= db.Column(db.String(150))
-    github= db.Column(db.String(150))
-    mail= db.Column(db.String(150))
-    remark= db.Column(db.String(200))
-    attachment= db.Column(db.Text)
+    name = db.Column(db.String(50))
+    website = db.Column(db.String(150))
+    doc_addr = db.Column(db.String(150))
+    submitter = db.Column(db.String(50))
+    contact = db.Column(db.String(150))
+    github = db.Column(db.String(150))
+    mail = db.Column(db.String(150))
+    remark = db.Column(db.String(200))
+    attachment = db.Column(db.Text)

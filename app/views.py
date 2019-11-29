@@ -1,17 +1,11 @@
 from flask import request
 from flask import current_app as app
 from werkzeug.utils import secure_filename
-from . import  db
-from .models import Report,Contact,Project
+from . import db
+from .models import Report, Contact, Project
 from .utils import ResponseObj
 import json
 import os
-
-
-
-
-
-
 
 
 @app.route('/survey/report/<id>', methods=['GET'])
@@ -59,7 +53,7 @@ def submit_project():
     """
     try:
         form = request.form
-        files=request.files
+        files = request.files
         name = form['name']
         website = form['website']
         doc_addr = form['doc_addr']
@@ -71,7 +65,8 @@ def submit_project():
         basepath = os.path.dirname(__file__)
         upload_path = os.path.join(basepath, r'''static\uploads''', secure_filename(attachment.filename))
         attachment.save(upload_path)
-        project = Project(name=name, website=website, doc_addr=doc_addr,contact=contact,github=github,mail=mail,remark=remark,attachment=attachment.filename)
+        project = Project(name=name, website=website, doc_addr=doc_addr, contact=contact, github=github, mail=mail,
+                          remark=remark, attachment=attachment.filename)
         db.session.add(project)
         db.session.commit()
         response = ResponseObj(None, 200, u'请求成功')
