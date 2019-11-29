@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 
@@ -14,6 +15,7 @@ def create_app():
     # Initialize Config
     app.config.from_object(Config)
     db.init_app(app)
+    CORS(app)
     with app.app_context():
         from . import views
         return app
